@@ -154,6 +154,8 @@ def update_products(product_id):
     Update a Product
     This endpoint will update a Product based the body that is posted
     """
+    if request.method == "POST":
+        abort(status.HTTP_405_METHOD_NOT_ALLOWED)
     app.logger.info("Request to Update a product with id [%s]", product_id)
     check_content_type("application/json")
     product = Product.find(product_id)
